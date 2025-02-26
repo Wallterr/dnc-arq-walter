@@ -2,7 +2,7 @@ import { useContext, useState, useEffect } from 'react';
 import './ProjectList.css';
 // ASSETS
 
-import LikeFilled from '../../assets/LikeFilled.svg';
+import LikeFilled from 'src/assets/LikeFilled.svg';
 import LikeUnfilled from '../../assets/LikeUnfilled.svg' // Correto
 
 //COMPONENTS
