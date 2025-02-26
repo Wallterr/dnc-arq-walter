@@ -1,37 +1,36 @@
 import { useContext, useState, useEffect } from 'react';
 import './ProjectList.css';
+
 // ASSETS
+import LikeFilled from '../../assets/LikeFilled.svg'; // Caminho corrigido
+import LikeUnfilled from '../../assets/LikeUnfilled.svg'; // Correto
 
-import LikeFilled from 'src/assets/LikeFilled.svg';
-import LikeUnfilled from '../../assets/LikeUnfilled.svg' // Correto
-
-//COMPONENTS
-import Button from '../Button/Button'
+// COMPONENTS
+import Button from '../Button/Button';
 
 // UTILS
 import { getApiData } from '../../services/apiServices';
 
 // CONTEXT
-
-import { AppContext } from '../../contexts/AppContext'
+import { AppContext } from '../../contexts/AppContext';
 
 function ProjectList() {
     const [projects, setProjects] = useState([]);
-    const [favProjects, setFavProjects] = useState([]) // Correto
-    const appContext = useContext(AppContext)
+    const [favProjects, setFavProjects] = useState([]); // Correto
+    const appContext = useContext(AppContext);
 
     const handleSavedProjects = (id) => {
         setFavProjects((prevFavProjects) => { // Correto
             if (prevFavProjects.includes(id)) {
-                const filterArray = prevFavProjects.filter((projectId) => projectId !== id)
-                sessionStorage.setItem('favProjects', JSON.stringify(filterArray))
-                return filterArray
+                const filterArray = prevFavProjects.filter((projectId) => projectId !== id);
+                sessionStorage.setItem('favProjects', JSON.stringify(filterArray));
+                return filterArray;
             } else {
-                sessionStorage.setItem('favProjects', JSON.stringify([...prevFavProjects, id]))
-                return [...prevFavProjects, id]
+                sessionStorage.setItem('favProjects', JSON.stringify([...prevFavProjects, id]));
+                return [...prevFavProjects, id];
             }
-        })
-    }
+        });
+    };
 
     useEffect(() => {
         const fetchData = async () => {
@@ -46,12 +45,11 @@ function ProjectList() {
     }, []);
 
     useEffect(() => {
-        const savedFavProjects = JSON.parse(sessionStorage.getItem('favProjects'))
-        if (savedFavProjects){
-            setFavProjects(savedFavProjects) // Correto
-        }    
-    }, [])
-
+        const savedFavProjects = JSON.parse(sessionStorage.getItem('favProjects'));
+        if (savedFavProjects) {
+            setFavProjects(savedFavProjects); // Correto
+        }
+    }, []);
 
     return (
         <div className="projects-section">
